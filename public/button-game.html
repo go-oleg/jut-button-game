@@ -1,0 +1,47 @@
+<html>
+<head>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+  <title></title>
+</head>
+<body>
+  <script type="text/javascript">
+
+    function sendClick(side) {
+      // $.ajax({
+      //   url: "https://data-engine-52-89-233-160.jutdata.io:3110/api/v1/import/webhook/?space=button_game&data_source=button_game&apikey=k81VYAN8m-1v&field_connector=webhook&field_data_source=button_game",
+      //   type: "POST",
+      //   dataType: "json",
+      //   contentType: "application/json",
+      //   data: JSON.stringify({
+      //     side: side
+      //   }),
+      //   success: function(resp) {
+      //     console.log(resp);
+      //   }
+      // });
+
+      $.ajax({
+        url: "/sendClick",
+        type: "POST",
+        dataType: "json",
+        contentType: "application/json",
+        data: JSON.stringify({
+          side: side
+        }),
+        success: function(resp) {
+          console.log(resp);
+        }
+      });
+    }
+    $('body').on('keydown', function(event) {
+      if (event.originalEvent.location === KeyboardEvent.DOM_KEY_LOCATION_LEFT){
+        sendClick('left');
+      } else if (event.originalEvent.location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT){
+        sendClick('right');
+      }
+    });
+  </script>
+
+  <h1>Step right up!</h1>
+</body>
+</html>
