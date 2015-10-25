@@ -15,7 +15,7 @@ var server = app.listen(app.get('port'), function () {
 
   app.post('/sendClick', function(req, res, next) {
     request({
-        url: process.env.JUT_WEBOOK_URL,
+        url: process.env.JUT_WEBHOOK_URL,
         method: "POST",
         json: true,
         contentType: "application/json",
@@ -23,8 +23,11 @@ var server = app.listen(app.get('port'), function () {
           side: req.body.side
         }
     }, function(err, response, body) {
-        if (response.statusCode !== 200) {
-            console.log('statusCode: ' + response.statusCode);
+        if (err) {
+          console.log('error: ' + err);
+        }
+        else if (response.statusCode !== 200) {
+          console.log('response code: ' + response.statusCode);
         }
     });
 
