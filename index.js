@@ -18,6 +18,7 @@ var server = app.listen(app.get('port'), function () {
         url: process.env.JUT_WEBHOOK_URL,
         method: "POST",
         json: true,
+        strictSSL: false, //TODO: remove once cert stuff is straightened out
         contentType: "application/json",
         body: {
           side: req.body.side
